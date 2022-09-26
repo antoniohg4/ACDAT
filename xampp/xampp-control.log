@@ -67,3 +67,102 @@
 8:47:10  [main] 	Deinitializing Modules
 8:47:10  [main] 	Deinitializing Control Panel
 
+8:16:50  [main] 	Initializing Control Panel
+8:16:50  [main] 	Windows Version:  Enterprise  64-bit
+8:16:50  [main] 	XAMPP Version: 8.1.6
+8:16:50  [main] 	Control Panel Version: 3.3.0  [ Compiled: Apr 6th 2021 ]
+8:16:50  [main] 	Running with Administrator rights - good!
+8:16:50  [main] 	XAMPP Installation Directory: "c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\"
+8:16:50  [main] 	WARNING: Your install directory contains spaces.  This may break programs/scripts
+8:16:50  [main] 	Checking for prerequisites
+8:16:54  [main] 	All prerequisites found
+8:16:54  [main] 	Initializing Modules
+8:16:54  [Apache] 	Apache Service detected with wrong path
+8:16:54  [Apache] 	Change XAMPP Apache and Control Panel settings or
+8:16:54  [Apache] 	Uninstall/disable the other service manually first
+8:16:54  [Apache] 	Found Path: "C:\xampp\apache\bin\httpd.exe" -k runservice
+8:16:54  [Apache] 	Expected Path: "c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\apache\bin\httpd.exe" -k runservice
+8:16:54  [mysql] 	MySQL Service detected with wrong path
+8:16:54  [mysql] 	Change XAMPP MySQL and Control Panel settings or
+8:16:54  [mysql] 	Uninstall/disable the other service manually first
+8:16:54  [mysql] 	Found Path: C:\xampp\mysql\bin\mysqld.exe --defaults-file=c:\xampp\mysql\bin\my.ini mysql
+8:16:54  [mysql] 	Expected Path: c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\mysql\bin\mysqld.exe --defaults-file=c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\mysql\bin\my.ini mysql
+8:16:54  [main] 	Starting Check-Timer
+8:16:54  [main] 	Control Panel Ready
+8:18:47  [Apache] 	Attempting to start Apache service...
+8:18:48  [mysql] 	Attempting to start MySQL service...
+8:19:16  [Apache] 	Attempting to start Apache service...
+8:19:29  [main] 	Deinitializing Modules
+8:19:29  [main] 	Deinitializing Control Panel
+
+8:19:38  [main] 	Initializing Control Panel
+8:19:38  [main] 	Windows Version:  Enterprise  64-bit
+8:19:38  [main] 	XAMPP Version: 8.1.6
+8:19:38  [main] 	Control Panel Version: 3.3.0  [ Compiled: Apr 6th 2021 ]
+8:19:38  [main] 	Running with Administrator rights - good!
+8:19:38  [main] 	XAMPP Installation Directory: "c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\"
+8:19:38  [main] 	WARNING: Your install directory contains spaces.  This may break programs/scripts
+8:19:38  [main] 	Checking for prerequisites
+8:19:38  [main] 	All prerequisites found
+8:19:38  [main] 	Initializing Modules
+8:19:38  [Apache] 	Apache Service detected with wrong path
+8:19:38  [Apache] 	Change XAMPP Apache and Control Panel settings or
+8:19:38  [Apache] 	Uninstall/disable the other service manually first
+8:19:38  [Apache] 	Found Path: "C:\xampp\apache\bin\httpd.exe" -k runservice
+8:19:38  [Apache] 	Expected Path: "c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\apache\bin\httpd.exe" -k runservice
+8:19:38  [mysql] 	MySQL Service detected with wrong path
+8:19:38  [mysql] 	Change XAMPP MySQL and Control Panel settings or
+8:19:38  [mysql] 	Uninstall/disable the other service manually first
+8:19:38  [mysql] 	Found Path: C:\xampp\mysql\bin\mysqld.exe --defaults-file=c:\xampp\mysql\bin\my.ini mysql
+8:19:38  [mysql] 	Expected Path: c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\mysql\bin\mysqld.exe --defaults-file=c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\mysql\bin\my.ini mysql
+8:19:38  [main] 	Starting Check-Timer
+8:19:38  [main] 	Control Panel Ready
+8:19:39  [Apache] 	Attempting to start Apache service...
+8:19:50  [mysql] 	Attempting to start MySQL service...
+8:19:53  [Apache] 	Uninstalling service...
+8:19:53  [Apache] 	Successful!
+8:19:56  [mysql] 	Uninstalling service...
+8:19:57  [mysql] 	Successful!
+8:19:57  [Apache] 	Attempting to start Apache app...
+8:19:57  [Apache] 	Status change detected: running
+8:19:58  [Apache] 	Status change detected: stopped
+8:19:58  [Apache] 	Error: Apache shutdown unexpectedly.
+8:19:58  [Apache] 	This may be due to a blocked port, missing dependencies, 
+8:19:58  [Apache] 	improper privileges, a crash, or a shutdown by another method.
+8:19:58  [Apache] 	Press the Logs button to view error logs and check
+8:19:58  [Apache] 	the Windows Event Viewer for more clues
+8:19:58  [Apache] 	If you need more help, copy and post this
+8:19:58  [Apache] 	entire log window on the forums
+8:20:07  [Apache] 	Installing service...
+8:20:08  [Apache] 	Successful!
+8:20:10  [Apache] 	Attempting to start Apache service...
+8:20:10  [Apache] 	Status change detected: running
+8:20:11  [Apache] 	Status change detected: stopped
+8:20:11  [Apache] 	Error: Apache shutdown unexpectedly.
+8:20:11  [Apache] 	This may be due to a blocked port, missing dependencies, 
+8:20:11  [Apache] 	improper privileges, a crash, or a shutdown by another method.
+8:20:11  [Apache] 	Press the Logs button to view error logs and check
+8:20:11  [Apache] 	the Windows Event Viewer for more clues
+8:20:11  [Apache] 	If you need more help, copy and post this
+8:20:11  [Apache] 	entire log window on the forums
+8:20:27  [main] 	Deinitializing Modules
+8:20:27  [main] 	Deinitializing Control Panel
+
+8:24:35  [main] 	Initializing Control Panel
+8:24:35  [main] 	Windows Version:  Enterprise  64-bit
+8:24:35  [main] 	XAMPP Version: 8.1.6
+8:24:35  [main] 	Control Panel Version: 3.3.0  [ Compiled: Apr 6th 2021 ]
+8:24:35  [main] 	Running with Administrator rights - good!
+8:24:35  [main] 	XAMPP Installation Directory: "c:\users\dam-2\desktop\2-dam ahg\acdat\xampp\"
+8:24:35  [main] 	WARNING: Your install directory contains spaces.  This may break programs/scripts
+8:24:35  [main] 	Checking for prerequisites
+8:24:35  [main] 	All prerequisites found
+8:24:35  [main] 	Initializing Modules
+8:24:35  [main] 	Starting Check-Timer
+8:24:35  [main] 	Control Panel Ready
+8:24:38  [mysql] 	Installing service...
+8:24:38  [mysql] 	Successful!
+8:24:41  [Apache] 	Attempting to start Apache service...
+8:24:43  [main] 	Deinitializing Modules
+8:24:43  [main] 	Deinitializing Control Panel
+

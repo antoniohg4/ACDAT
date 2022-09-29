@@ -82,5 +82,30 @@ public class Main {
 			}
 		
 	}
+	
+	
+	private static void ejercicio3(String nombreFicheroOrigen, String nombreFicheroDestino) {
+		String linea;
+		
+		//Leer archivo
+		try (FileReader flujoLectura=new FileReader (nombreFicheroOrigen);
+			BufferedReader filtroLectura=new BufferedReader(flujoLectura);
+			PrintWriter filtroEscritura=new PrintWriter(new FileWriter (nombreFicheroDestino));)
+			{
+				linea=filtroLectura.readLine(); 
+				while (linea!=null){
+					filtroEscritura.println(linea);
+					linea=filtroLectura.readLine();
+				}
+				System.out.println("Copiado correctamente");
+			}
+			catch (FileNotFoundException e) {
+				System.out.println("No existe el fichero" + nombreFicheroDestino);
+			}
+			catch (IOException e) { 
+				System.out.println( e.getMessage());
+			}
+		
+	}
 
 }

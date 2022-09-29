@@ -87,6 +87,9 @@ public class Main {
 	private static void ejercicio3(String nombreFicheroOrigen, String nombreFicheroDestino) {
 		String linea;
 		
+		
+		
+		
 		//Leer archivo
 		try (FileReader flujoLectura=new FileReader (nombreFicheroOrigen);
 			BufferedReader filtroLectura=new BufferedReader(flujoLectura);

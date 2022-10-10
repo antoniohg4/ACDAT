@@ -1,3 +1,4 @@
+package copiarImagen;
 
 
 import java.io.BufferedInputStream;

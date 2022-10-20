@@ -29,24 +29,27 @@ public class Principal {
 			document.getDocumentElement().normalize();			
 			Node raiz = document.getDocumentElement();
 			
+			//Obtengo todas las personas
 			NodeList personas = ((Element)raiz).getElementsByTagName("persona");
 			
 			String nombre = null;
 			int edad;
 			Element persona;
 			
+			//Recorro las personas
 			for (int i = 0; i < personas.getLength(); i++) {
+				
+				//Por cada persona
 				persona = (Element)personas.item(i);
 				
-				NodeList nombres = persona.getElementsByTagName("nombre");
-				NodeList edades = persona.getElementsByTagName("edad");
+				//Obtengo nombre y edad
+				Node nodoNombre = (Node)persona.getElementsByTagName("nombre");
+				Node nodoEdad = (Node)persona.getElementsByTagName("edad");
 				
-				for (int j = 0; j < nombres.getLength(); j++) {
-					nombre = nombres.item(j).getTextContent();
-					edad = Integer.parseInt(edades.item(j).getTextContent());
-					listaPersonas.add(new Persona(nombre, edad));
-				}
-				
+				nombre = nodoNombre.getTextContent();
+				edad = Integer.parseInt(nodoEdad.getTextContent());
+				listaPersonas.add(new Persona(nombre, edad));
+				for
 			}
 			
 			Collections.sort(listaPersonas);

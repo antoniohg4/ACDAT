@@ -49,7 +49,7 @@ public class Principal {
 				nombre = nodoNombre.getTextContent();
 				edad = Integer.parseInt(nodoEdad.getTextContent());
 				listaPersonas.add(new Persona(nombre, edad));
-				for
+				
 			}
 			
 			Collections.sort(listaPersonas);

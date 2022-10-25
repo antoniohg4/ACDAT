@@ -54,7 +54,7 @@ public class CrearXMLPersonas {
 			
 			
 			annadirElementos(elementoPersona, document, "nombre", persona.getNombre());
-			annadirElementos(elementoPersona, document, "nombre", String.valueOf(persona.getEdad()));
+			annadirElementos(elementoPersona, document, "edad", String.valueOf(persona.getEdad()));
 		}
 		
 		

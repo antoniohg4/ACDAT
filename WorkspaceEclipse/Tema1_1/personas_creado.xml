@@ -2,22 +2,22 @@
 <personas>
 	<persona repetidor="S" sexo="H">
 		<nombre>Antonio</nombre>
-		<nombre>53</nombre>
+		<edad>53</edad>
 	</persona>
 	<persona sexo="H">
 		<nombre>Juan</nombre>
-		<nombre>26</nombre>
+		<edad>26</edad>
 	</persona>
 	<persona sexo="M">
 		<nombre>Maria</nombre>
-		<nombre>60</nombre>
+		<edad>60</edad>
 	</persona>
 	<persona sexo="M">
 		<nombre>Laura</nombre>
-		<nombre>55</nombre>
+		<edad>55</edad>
 	</persona>
 	<persona sexo="M">
 		<nombre>Maria</nombre>
-		<nombre>18</nombre>
+		<edad>18</edad>
 	</persona>
 </personas>

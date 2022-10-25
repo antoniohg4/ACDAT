@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+	<persona sexo='H'  repetidor='S'>
+		<nombre>Antonio</nombre>
+		<edad>53</edad>
+	</persona>
+	<persona sexo='H'>
+		<nombre>Juan</nombre>
+		<edad>26</edad>
+	</persona>
+	<persona sexo='M'>
+		<nombre>Maria</nombre>
+		<edad>60</edad>
+	</persona>
+	<persona sexo='M'>
+		<nombre>Laura</nombre>
+		<edad>55</edad>
+	</persona>
+</personas>

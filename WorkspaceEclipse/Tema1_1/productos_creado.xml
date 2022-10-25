@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productos>
+	<producto>
+		<nombre>Pan</nombre>
+		<precio>1</precio>
+	</producto>
+	<producto>
+		<nombre>Coca-Cola</nombre>
+		<precio>3</precio>
+	</producto>
+	<producto>
+		<nombre>Chopped</nombre>
+		<precio>2</precio>
+	</producto>
+	<producto>
+		<nombre>Agua</nombre>
+		<precio>1</precio>
+	</producto>
+</productos>

@@ -1,3 +1,4 @@
+package testInicial;
 import java.util.Scanner;
 
 public class NumeroMonroy {

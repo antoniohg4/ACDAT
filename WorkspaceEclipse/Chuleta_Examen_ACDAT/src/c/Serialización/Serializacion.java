@@ -17,10 +17,9 @@ public class Serializacion {
 				for (Elemento nombre : nombre_lista) {		//La clase que se use en Elemento debe implementar Serializable
 					filtroEscritura.writeObject(nombre);
 				}
-				
-				
-			} catch (Exception e) {
+
+		} catch (Exception e) {
 				// TODO: handle exception
-			}
+		}
 	}
 }

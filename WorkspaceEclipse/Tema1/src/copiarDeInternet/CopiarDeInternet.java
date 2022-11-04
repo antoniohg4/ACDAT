@@ -35,7 +35,7 @@ public class CopiarDeInternet {
 		InputStream inputStream =  url.openStream();
 		
 		try (BufferedInputStream bIn = new BufferedInputStream(inputStream);
-				 BufferedOutputStream bOs = new BufferedOutputStream(new FileOutputStream(RUTA_IMAGEN));){
+			 BufferedOutputStream bOs = new BufferedOutputStream(new FileOutputStream(RUTA_IMAGEN));){
 
 			int cantidadBytesLeidos = 0;
 			

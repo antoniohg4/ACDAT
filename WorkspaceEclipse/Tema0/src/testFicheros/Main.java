@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		//imprimirFicheroPorLineas("file.txt");
-		//escribirEnFicheroPorLineas("file.txt");
+		escribirEnFicheroPorLineas("file.txt");
 		copiarContenido("origen.txt", "destino.txt");
 
 	}

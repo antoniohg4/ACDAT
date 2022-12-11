@@ -9,7 +9,7 @@ import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class Ej07 {
+public class Ej07{
 
 	private static final int SALIR=7;
 	
@@ -17,6 +17,7 @@ public class Ej07 {
 	
 	public static void main(String[] args) {
 		Connection conexion=null;
+		conexion=conexionBBDD();
 		
 		//Creamos la base de datos
 		crearBBDD(conexion);
@@ -32,11 +33,29 @@ public class Ej07 {
 			//Comprobamos si es correcta
 			comprobarOpcion(opcion);
 			//Y tratamos esa opcion
-			tratarOpcion(opcion);
+			tratarOpcion(opcion,conexion);
 			
 		}while(opcion!=SALIR); //Mientras la opcion insertada sea diferente a la de salir, seguirá pediendo una opcion y tratándola.
 		
+		//Cerrar la conexion
+        if (conexion != null)
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 		System.out.println("Programa finalizado");
+	}
+
+	private static Connection conexionBBDD() {
+		Connection conexion=null;
+		try {
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conexion;
 	}
 
 	private static void crearBBDD(Connection conexion) {
@@ -47,7 +66,7 @@ public class Ej07 {
 			//Sql para la creacion de la base de datos
 			String sql="CREATE DATABASE  IF NOT EXISTS ejercicio7 CHARACTER SET utf8;";
 			
-			PreparedStatement declaracion=conexion.prepareStatement(sql);
+			Statement declaracion= conexion.createStatement();
 			
 			//Comprobar si se ha creado o no
 			int resultado=declaracion.executeUpdate(sql);
@@ -65,7 +84,6 @@ public class Ej07 {
 		}
 		
 	}
-
 	/**
 	 * Método que le pasamos la conexion con la bbdd creada anteriormente y creamos las tablas
 	 * @param conexion
@@ -73,16 +91,14 @@ public class Ej07 {
 	 */
 	private static ResultSet conectarBBDDYCrearTablas(Connection conexion) {
 		ResultSet resultado = null;
-		int estadoSql;// Si es 1, se crea, si es diferente, no.
 
 		try {
-			
-			boolean conectadoBbdd = false;
+
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
 			Statement declaracion = conexion.createStatement();
 
 			//Mensaje para informar que se ha conectado o no a la BBDD
-			if (conectadoBbdd == declaracion.execute("use ejercicio7")) {
+			
 				System.out.println("Conexion a la base de datos establecida");
 				
 				//Declaraciones SQL para crear las tablas si no existen
@@ -90,86 +106,79 @@ public class Ej07 {
 				String sqlCrearModulos = "CREATE TABLE IF NOT EXISTS modulos (codigo INT(6) NOT NULL,descripcion VARCHAR(60) NOT NULL,CONSTRAINT PRIMARY KEY (codigo))";
 				String sqlMatriculas = "CREATE TABLE IF NOT EXISTS matriculas (dni varchar(9) NOT NULL,codigo INT(6) NOT NULL,CONSTRAINT matriculas_FK1 FOREIGN KEY(dni) REFERENCES alumnos(dni),CONSTRAINT matriculas_FK2 FOREIGN KEY(codigo) REFERENCES modulos(codigo))";
 				
-		
 				//Ejecuta creacion de Tabla alumnos si no existe e imprime mensaje de tabla creada
-				estadoSql = declaracion.executeUpdate(sqlCrearAlumnos);
-				if (estadoSql == 1) {
-					System.out.println("Tabla Alumno creada");
-				} 
+				comprobarTabla(declaracion, sqlCrearAlumnos); 
 				
 				//Ejecuta creacion de Tabla modulos si no existe e imprime mensaje de tabla creada
-				estadoSql = declaracion.executeUpdate(sqlCrearModulos);
-				if (estadoSql == 1) {
-					System.out.println("Tabla Modulos creada");
-				} 
+				comprobarTabla(declaracion, sqlCrearModulos);
 				
 				//Ejecuta creacion de Tabla matriculas si no existe e imprime mensaje de tabla creada
-				estadoSql = declaracion.executeUpdate(sqlMatriculas);
-				if (estadoSql == 1) {
-					System.out.println("Tabla Matriculas creada");
-				} 
-
-			} else {
-				System.out.println("Error: Conexion a BBDD no realizada");
-			}
-
+				comprobarTabla(declaracion, sqlMatriculas);
+				
 		} catch (SQLSyntaxErrorException e) {
 			System.out.println("ERROR: Sintaxis SQL introducida erronea");
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("No mames me corri");
 		}
 		return resultado;
 		
 	}
 
-	private static void tratarOpcion(int opcion) {
+	private static void comprobarTabla(Statement declaracion, String sql) throws SQLException {
+		int estadoSql;
+		estadoSql = declaracion.executeUpdate(sql);
+		if (estadoSql == 1) {
+			System.out.println("Tabla"+sql+ "creada");
+		}
+	}
+
+	private static void tratarOpcion(int opcion, Connection conexion) {
 		
 		//Dependiendo de la opcion la tratamos de una manera u otra
 		
 		if(opcion==1) {
 			//Dar de alta a un alumno
-			tratarOpcion1();
+			tratarOpcion1(conexion);
 		}
 		
 		if(opcion==2) {
 			//Dar de alta modulo profesional
-			tratarOpcion2();
+			tratarOpcion2(conexion);
 		}
 		
 		if(opcion==3) {
 			//Matricular alumno modulo profesional
-			tratarOpcion3();
+			tratarOpcion3(conexion);
 		}
 		
 		if(opcion==4) {
 			//Desmatricular alumno de modulo profesional
-			tratarOpcion4();
+			tratarOpcion4(conexion);
 		}
 		
 		if(opcion==5) {
 			//Listar alumnos de un modulo profesional
-			tratarOpcion5();
+			tratarOpcion5(conexion);
 		}
 		
 		if (opcion==6) {
 			//Listar modulos de un alumno
-			tratarOpcion6();
+			tratarOpcion6(conexion);
 		}
 	}
 
 	/**
 	 * Método que trata la opcion 6
+	 * @param conexion 
 	 */
-	private static void tratarOpcion6() {
-		Connection con = null;
+	private static void tratarOpcion6(Connection conexion) {
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
-
+		
 			//Insertamos un dni y nos muestra los códigos de los modulos que esta matriculado ese DNI
-			String sql="SELECT codigo FROM matriculas WHERE dni=(?)";
-			PreparedStatement st=con.prepareStatement(sql);
+			String sql="SELECT codigo FROM ejercicio7.matriculas WHERE dni=(?)";
+			PreparedStatement st=conexion.prepareStatement(sql);
 			
 			
 			String dni=pedirCadena("Introduzca el dni del alumno");
@@ -179,7 +188,7 @@ public class Ej07 {
 			
 			ResultSet rs = st.executeQuery();
 
-			System.out.println(rs.getString("Modulos en los que esta matriculado: "));
+			System.out.println(("Modulos en los que esta matriculado: "));
 			
 			//Mostramos los datos
 			boolean hayFilas = false;
@@ -197,30 +206,23 @@ public class Ej07 {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
+		} 
 		
 	}
 
 	/**
 	 * Método que trata la opcion 5
+	 * @param conexion 
 	 */
-	private static void tratarOpcion5() {
-		Connection con = null;
+	private static void tratarOpcion5(Connection conexion) {
 
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
 
 			//Selecionamos el nombre del alumno y el codigo de la matricula donde coincidan dni de alumno y matriculas por el codigo que
 			//hemos insertado
-			String sql="SELECT a.nombre, m.codigo FROM alumnos a INNER JOIN matriculas m ON a.dni = m.dni WHERE m.codigo=(?)";
-			PreparedStatement st=con.prepareStatement(sql);
+						
+			String sql="SELECT a.nombre, m.codigo FROM ejercicio7.alumnos a INNER JOIN ejercicio7.matriculas m ON a.dni = m.dni WHERE m.codigo=(?)";
+			PreparedStatement st=conexion.prepareStatement(sql);
 			
 			//Pedimos el codigo
 			int codigo=pedirEntero("Introduzca el codigo del modulo profesional");
@@ -269,33 +271,22 @@ public class Ej07 {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 		}
-		
 	}
 
 	/**
 	 * Método que trata la opcion 4
+	 * @param conexion 
 	 */
-	private static void tratarOpcion4() {
-		Connection con = null;
+	private static void tratarOpcion4(Connection conexion) {
 
-		
 		try {
-			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
 
 			//Sql donde borramos las matriculas con el dni y codigo que introduzcamos
 			String sql="DELETE FROM ejercicio7.matriculas\r\n"
 					+ "WHERE dni=? AND codigo=?;\r\n"
 					+ "";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conexion.prepareStatement(sql);
 			
 			//Pedimos dni y codigo
 			String dni=pedirCadena("Introduzca el dni del alumno");
@@ -317,34 +308,24 @@ public class Ej07 {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
-		
+		} 
 	}
 
 	/**
 	 * Método para tratar la opcion 3
+	 * @param conexion 
 	 */
-	private static void tratarOpcion3() {
-		Connection con = null;
+	private static void tratarOpcion3(Connection conexion) {
 
 		try {
-			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
-			
+
 			//SQL para mostrar todos los alumnos
-			String sqlAlumnos="SELECT * FROM alumnos";
+			String sqlAlumnos="SELECT * FROM ejercicio7.alumnos";
 			//SQL para mostrar todos los modulos
-			String sqlMp="SELECT * FROM modulos";
+			String sqlMp="SELECT * FROM ejercicio7.modulos";
 			
-			Statement mostrarAlumnos=con.createStatement();
-			Statement mostrarMp=con.createStatement();
+			Statement mostrarAlumnos=conexion.createStatement();
+			Statement mostrarMp=conexion.createStatement();
 			
 			ResultSet resultadoAlumnos=mostrarAlumnos.executeQuery(sqlAlumnos);
 			ResultSet resultadoModulos=mostrarMp.executeQuery(sqlMp);
@@ -378,7 +359,7 @@ public class Ej07 {
 
 			//Insertamos en las matriculas los valores que pedimos
 			String sql="INSERT INTO ejercicio7.matriculas (dni,codigo) VALUES (?,?)";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conexion.prepareStatement(sql);
 			
 			//Solicitamos valores
 			String dni=pedirCadena("Introduzca el dni del alumno");
@@ -403,31 +384,21 @@ public class Ej07 {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
+		} 
 		
 	}
 
 	/**
 	 * Método que trata la opcion 2
+	 * @param conexion 
 	 */
-	private static void tratarOpcion2() {
-		Connection con = null;
+	private static void tratarOpcion2(Connection conexion) {
 
 		try {
 			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
-
 			//Insertamos en los modulos los valores que pedimos
 			String sql="INSERT INTO ejercicio7.modulos (codigo,descripcion) VALUES (?,?)";
-			PreparedStatement st = con.prepareStatement(sql);
-			
+			PreparedStatement st = conexion.prepareStatement(sql);
 			
 			//Pedimos los datos
 			int codigo=pedirEntero("Introduzca el codigo del modulo");
@@ -449,13 +420,6 @@ public class Ej07 {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 		}
 		
 	}
@@ -463,12 +427,9 @@ public class Ej07 {
 	/**
 	 * Método que trata la opcion 1
 	 */
-	private static void tratarOpcion1() {
-		Connection con = null;
+	private static void tratarOpcion1(Connection conexion) {
 
 		try {
-			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ejercicio7", "root", "");
 			
 			//Pedimos los datos
 			String dni=pedirCadena("Introduce un DNI");
@@ -481,7 +442,7 @@ public class Ej07 {
 
 			
 			String sql="INSERT INTO ejercicio7.alumnos (dni,nombre,apellido1,apellido2,email,edad) VALUES (?,?,?,?,?,?)";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conexion.prepareStatement(sql);
 			
 			//Insertamos los valores definiendo sus posiciones
 			st.setString(1,dni);
@@ -500,17 +461,9 @@ public class Ej07 {
 				System.out.println("Alumno insertado correctamente");
 			}
 			st.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
+		} 
 		
 	}
 

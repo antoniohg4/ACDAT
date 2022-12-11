@@ -20,7 +20,7 @@ public class Ej02 {
 			// Class.forName("com.mysql.jdbc.Driver");
 
 			// Obtenemos la conexión a partir de la URL jdbc correspondiente
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/PruebaConexionBD", "root", "");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/instituto", "root", "");
 
 			// Obtenermos una instancia de un objeto que implementa la interface statement.
 			Statement st = con.createStatement();
